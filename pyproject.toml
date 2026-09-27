@@ -1,0 +1,17 @@
+[project]
+name = "rss-rag"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "feedparser>=6.0.14",
+    "fastapi[standard]",
+    "langchain-anthropic",
+    "langchain-huggingface",
+    "langchain-chroma",
+    "deepagents",
+    "chromadb",
+    "sentence-transformers>=6.1.0",
+    "python-docx>=1.2.0",
+    "pypdf>=6.19.0",
+    "reportlab>=5.0.1",
+]
