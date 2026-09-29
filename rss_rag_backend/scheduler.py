@@ -10,9 +10,9 @@ from rss_agent.embedding import add_rss_document
 
 
 @asynccontextmanager
-def scheduler(app: FastAPI):
+async def scheduler(app: FastAPI):
     scheduler = BackgroundScheduler()
-    scheduler.add_job(add_rss_document(rss_feed_url=""), 'interval', minutes=1)
+    scheduler.add_job(add_rss_document, 'interval',args=["http://127.0.0.1:8181/feed/"], minutes=1)
     scheduler.start()
     yield
     scheduler.shutdown()

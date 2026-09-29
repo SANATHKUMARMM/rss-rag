@@ -8,6 +8,7 @@ dependencies = [
     "langchain-anthropic",
     "langchain-huggingface",
     "langchain-chroma",
+    "langchain-aws",
     "deepagents",
     "chromadb",
     "sentence-transformers>=6.1.0",
@@ -15,4 +16,5 @@ dependencies = [
     "pypdf>=6.19.0",
     "reportlab>=5.0.1",
     "apscheduler>=3.11.3",
+    "huggingface-hub>=1.33.0",
 ]

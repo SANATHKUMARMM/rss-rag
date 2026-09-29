@@ -1,5 +1,6 @@
 import deepagents
 from deepagents.backends import FilesystemBackend
+from langchain_aws import ChatBedrockConverse
 from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 
 from rss_agent.subagents import subagents
@@ -13,12 +14,10 @@ vector store db.
 
 backend = FilesystemBackend(root_dir="./",virtual_mode=False)
 
-llm_endpoint = HuggingFaceEndpoint(
-    model="Qwen/Qwen3.8-27B",
-    task="text-generation",
-    temperature=0.1,
+llm = ChatBedrockConverse(
+    model="openai.gpt-5.4",
+    region_name="us-east-1"
 )
-llm = ChatHuggingFace(llm=llm_endpoint)
 
 agent = deepagents.create_deep_agent(
     subagents=subagents,
@@ -30,7 +29,7 @@ agent = deepagents.create_deep_agent(
 )
 def invoke_agent(query: str):
 
-    user_message = [{"role":"user","content":query}]
+    user_message = {"messages":[{"role":"user","content":query}]}
 
     stream = agent.stream_events(input=user_message,version="v3")
     for message in stream.messages:
